@@ -478,6 +478,27 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+/* message d'erreur  */
+.error {
+  border: red 2px solid;
+}
+.errorMessage {
+  font-size: 12px;
+  color: red;
+  display: none;
+  margin-top: 7px;
+
+}
+.errorMessage::before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f06a';
+  margin-right: 5px;
+}
+.success {
+  border: green 2px solid;
+}
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;

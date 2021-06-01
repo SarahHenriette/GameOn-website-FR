@@ -5,6 +5,7 @@
     <title>Reservation</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="stylesheet" href="modal.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link
       href="https://fonts.googleapis.com/css?family=DM+Sans"
@@ -71,6 +72,7 @@
                   id="first"
                   name="first"
                 /><br>
+                <small class="errorMessage">Error</small>
               </div>
               <div
                 class="formData">
@@ -81,6 +83,7 @@
                   id="last"
                   name="last"
                 /><br>
+                <small class="errorMessage">Error</small>
               </div>
               <div
                 class="formData">
@@ -91,6 +94,7 @@
                   id="email"
                   name="email"
                 /><br>
+                <small class="errorMessage">Error</small>
               </div>
               <div
                 class="formData">
@@ -101,15 +105,17 @@
                   id="birthdate"
                   name="birthdate"
                 /><br>
+                <small class="errorMessage">Error</small>
               </div>
               <div
                 class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input class="text-control" id="quantity" name="quantity" >
+                <input class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <small class="errorMessage">Error</small>
               </div>
               <p class="text-label">Quelles villes ?</p>
               <div
-                class="formData">
+                class="formData optionsCity">
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -176,7 +182,9 @@
                   <span class="checkbox-icon"></span>
                   Portland</label
                 >
+                <small class="errorMessage">Error</small>
               </div>
+              
 
               <div
                 class="formData">
@@ -190,6 +198,7 @@
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
+                <small class="errorMessage">Error</small>
                 <br>
                 <input class="checkbox-input" type="checkbox" id="checkbox2" />
                 <label class="checkbox2-label" for="checkbox2">
