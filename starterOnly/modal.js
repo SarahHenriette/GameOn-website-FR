@@ -22,8 +22,10 @@ function launchModal() {
 }
 
 // close modal form
-closeBtn.addEventListener("click", ()=> {
-  modalbg.style.display = "none";
-} )
+closeBtn.addEventListener("click", closeModal )
+
+function closeModal() {
+    modalbg.style.display = "none";
+}
 
 
