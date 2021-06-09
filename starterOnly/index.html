@@ -12,7 +12,7 @@
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body id="body">
     <div class="topnav" id="myTopnav">
       <div class="header-logo">
       <img alt="logo" src="Logo.png" width="auto" height="auto" />
@@ -90,7 +90,6 @@
                 <label for="email">E-mail</label><br>
                 <input
                   class="text-control"
-                  type="email"
                   id="email"
                   name="email"
                 /><br>
@@ -110,7 +109,7 @@
               <div
                 class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input class="text-control" id="quantity" name="quantity" min="0" max="99">
+                <input class="text-control" id="quantity" name="quantity">
                 <small class="errorMessage">Error</small>
               </div>
               <p class="text-label">Quelles villes ?</p>

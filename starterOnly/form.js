@@ -5,11 +5,13 @@ const quantity = document.querySelector('#quantity')
 const birthdate = document.querySelector('#birthdate')
 const checkbox = document.querySelectorAll('.checkbox-input[type="radio"]')
 const optionsCity = document.querySelector(".optionsCity")
-// const textControl = document.querySelectorAll('.text-control')
-
 const checkbox1 = document.querySelector("#checkbox1")
 const form = document.querySelector("form")
-var regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const body = document.getElementById("body")
+const formulaire = document.querySelector(".bground");
+const textControl = document.querySelectorAll(".text-control")
+
+let regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 let regexMin = /^.{2,35}$/
 let checkedCheckbox = false
 
@@ -49,7 +51,7 @@ function error(element, messageError, smallError) {
         if(regexEmail.test(email.value)) {
             success(email, email.parentNode.childNodes[7])
         }else {
-            error(email, "Veuillez entrer 2 caractères ou plus pour le champ du nom.", email.parentNode.childNodes[7])
+            error(email, "Veuillez entrer une adresse mail valide.", email.parentNode.childNodes[7])
         }
     })
 
@@ -103,7 +105,44 @@ function validate(event) {
         checkedCheckbox == true &&
         checkbox1.checked == true
         ){
-            alert('cest ok')
+            event.preventDefault()
+            // alert('cest ok')
+            // console.log(body)
+            let validationMessage = document.createElement('div')
+            let validationMessageClose = document.createElement('span')
+            let validationMessageBtnClose = document.createElement('button')
+
+            validationMessage.classList.add('msg')
+            validationMessageClose.classList.add('close')
+            validationMessageBtnClose.classList.add('btnClose')
+
+            validationMessage.textContent = "Vos informations ont bien été enregistré"
+            validationMessageBtnClose.textContent = "Close"
+
+            body.appendChild(validationMessage)
+            validationMessage.appendChild(validationMessageClose)
+            validationMessage.appendChild(validationMessageBtnClose)
+
+
+            //fermeture 
+            validationMessageClose.addEventListener('click', function(){
+                validationMessage.style.display = "none"
+            })
+
+            validationMessageBtnClose.addEventListener('click', function(){
+                validationMessage.style.display = "none"
+            })
+
+            //suppression du formulaire
+            formulaire.style.display="none"
+
+            //reset le formulaire
+            form.reset()
+            textControl.forEach(element => {
+                console.log(element)
+                element.classList.remove("success")
+            });
+
     } else {
         //si tout n'est pas rempli je mets les messages d'erreurs
         event.preventDefault()
