@@ -8,7 +8,7 @@ const optionsCity = document.querySelector(".optionsCity")
 const checkbox1 = document.querySelector("#checkbox1")
 const form = document.querySelector("form")
 const body = document.getElementById("body")
-const formulaire = document.querySelector(".bground");
+const formulaire = document.querySelector(".modal-bground");
 const textControl = document.querySelectorAll(".text-control")
 
 let regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
