@@ -35,7 +35,7 @@ function error(element, messageError, smallError) {
         if(regexMin.test(first.value)) {
             success(first, first.parentNode.childNodes[7])
         }else {
-            error(first, "Veuillez entrer 2 caractères ou plus pour le champ du nom.", first.parentNode.childNodes[7] )
+            error(first, "Veuillez entrer 2 caractères ou plus pour le champ du prénom.", first.parentNode.childNodes[7] )
         }
     })
 
@@ -63,6 +63,7 @@ function error(element, messageError, smallError) {
 
         }
     })
+
     quantity.addEventListener("keyup", function(){
         if(quantity.value !== "" && isNaN(quantity.value) == false ) {
             success(quantity, quantity.parentNode.childNodes[6])
@@ -73,12 +74,15 @@ function error(element, messageError, smallError) {
         }
     })
 
+    //Je retire le message d'erreur et le contour rouge quand l'une des checkbox à été checké
     checkbox.forEach(element => {
        element.addEventListener("change", function(){
         optionsCity.classList.remove("error")
         optionsCity.childNodes[25].style.display="none"
        })
     })
+    
+    //Je vérifie si les conditions d'utilisation à bien été coché ou non
     checkbox1.addEventListener("change", function(){
         if(checkbox1.checked == true) {
             checkbox1.parentNode.childNodes[5].style.display="none"
@@ -106,25 +110,26 @@ function validate(event) {
         checkbox1.checked == true
         ){
             event.preventDefault()
-            // alert('cest ok')
-            // console.log(body)
+            //création div contenant msg avec les bouton close
             let validationMessage = document.createElement('div')
+            let validationMsg = document.createElement('p')
             let validationMessageClose = document.createElement('span')
             let validationMessageBtnClose = document.createElement('button')
-
+            //attribution des class aux éléments
             validationMessage.classList.add('msg')
             validationMessageClose.classList.add('close')
             validationMessageBtnClose.classList.add('btnClose')
-
-            validationMessage.textContent = "Vos informations ont bien été enregistré"
+            
+            validationMsg.textContent= "Merci d'avoir soumis vos informations d'inscription"
             validationMessageBtnClose.textContent = "Close"
 
             body.appendChild(validationMessage)
             validationMessage.appendChild(validationMessageClose)
             validationMessage.appendChild(validationMessageBtnClose)
+            validationMessage.appendChild(validationMsg)
 
 
-            //fermeture 
+            //fermeture du message de confirmation
             validationMessageClose.addEventListener('click', function(){
                 validationMessage.style.display = "none"
             })
@@ -142,6 +147,8 @@ function validate(event) {
                 console.log(element)
                 element.classList.remove("success")
             });
+            //Je remet les checkbox a false
+            checkedCheckbox = false
 
     } else {
         //si tout n'est pas rempli je mets les messages d'erreurs
