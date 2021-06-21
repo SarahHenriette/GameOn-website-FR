@@ -18,63 +18,68 @@ let checkedCheckbox = false
 //fonction pour message success et error
 function success(element, smallError) {
     element.classList.add("success")
-    element.classList.remove("error")
-    smallError.style.display="none"
+    element.classList.remove("error") 
+    smallError.style.display="none" //supprime le msg d'erreur 
 }
 
 function error(element, messageError, smallError) {
     element.classList.add("error")
     element.classList.remove("success")
-    smallError.style.display="block"
+    smallError.style.display="block" //affiche le msg d'erreur 
     smallError.innerHTML= messageError
 }
 
-
 //Au saisie du champ je vérifie si c'est valide ou pas
     first.addEventListener("keyup", function(){
+        let msgErreur = first.parentNode.childNodes[7]
         if(regexMin.test(first.value)) {
-            success(first, first.parentNode.childNodes[7])
+            success(first, msgErreur)
         }else {
-            error(first, "Veuillez entrer 2 caractères ou plus pour le champ du prénom.", first.parentNode.childNodes[7] )
+            error(first, "Veuillez entrer 2 caractères ou plus pour le champ du prénom.", msgErreur )
         }
     })
 
     last.addEventListener("keyup", function(){
+        let msgErreur = last.parentNode.childNodes[7]
         if(regexMin.test(last.value)) {
-            success(last, last.parentNode.childNodes[7])
+            success(last, msgErreur)
         }else {
-            error(last, "Veuillez entrer 2 caractères ou plus pour le champ du nom.", last.parentNode.childNodes[7])
+            error(last, "Veuillez entrer 2 caractères ou plus pour le champ du nom.", msgErreur)
         }
     })
 
     email.addEventListener("keyup", function(){
+        let msgErreur = email.parentNode.childNodes[7]
         if(regexEmail.test(email.value)) {
-            success(email, email.parentNode.childNodes[7])
+            success(email, msgErreur)
         }else {
-            error(email, "Veuillez entrer une adresse mail valide.", email.parentNode.childNodes[7])
+            error(email, "Veuillez entrer une adresse mail valide.", msgErreur)
         }
     })
 
     birthdate.addEventListener("keyup", function(){
+        let msgErreur = birthdate.parentNode.childNodes[7]
         if(birthdate.value !== "" ) {
-            success(birthdate, birthdate.parentNode.childNodes[7])
+            success(birthdate, msgErreur)
         }else {
-            error(birthdate, "Vous devez entrer votre date de naissance.", birthdate.parentNode.childNodes[7])
+            error(birthdate, "Vous devez entrer votre date de naissance.", msgErreur)
 
         }
     })
 
     quantity.addEventListener("keyup", function(){
+        let msgErreur = quantity.parentNode.childNodes[6]
         if(quantity.value !== "" && isNaN(quantity.value) == false ) {
-            success(quantity, quantity.parentNode.childNodes[6])
+            success(quantity, msgErreur)
         }else if(quantity.value == "") {
-            error(quantity, "Vous devez entrer entrée une donnée.", quantity.parentNode.childNodes[6])
+            error(quantity, "Vous devez entrer entrée une donnée.", msgErreur)
         }else if(isNaN(quantity.value) == true){
-            error(quantity, "Vous devez saisir un nombre", quantity.parentNode.childNodes[6])
+            error(quantity, "Vous devez saisir un nombre", msgErreur)
         }
     })
 
     //Je retire le message d'erreur et le contour rouge quand l'une des checkbox à été checké
+    //optionCity == div qui contient toutes les checkboxes
     checkbox.forEach(element => {
        element.addEventListener("change", function(){
         optionsCity.classList.remove("error")
@@ -84,10 +89,11 @@ function error(element, messageError, smallError) {
     
     //Je vérifie si les conditions d'utilisation à bien été coché ou non
     checkbox1.addEventListener("change", function(){
+        let msgErreur = checkbox1.parentNode.childNodes[5]
         if(checkbox1.checked == true) {
             checkbox1.parentNode.childNodes[5].style.display="none"
         }else {
-            error(checkbox1,"Vous devez vérifier que vous acceptez les termes et conditions", checkbox1.parentNode.childNodes[5])
+            error(checkbox1,"Vous devez vérifier que vous acceptez les termes et conditions", msgErreur)
         }
     })
     
@@ -144,7 +150,6 @@ function validate(event) {
             //reset le formulaire
             form.reset()
             textControl.forEach(element => {
-                console.log(element)
                 element.classList.remove("success")
             });
             //Je remet les checkbox a false
@@ -153,30 +158,37 @@ function validate(event) {
     } else {
         //si tout n'est pas rempli je mets les messages d'erreurs
         event.preventDefault()
-        console.log('cest pas bon')
         if(first.value == "") {
-            error(first, "Vous devez entrer votre prénom.", first.parentNode.childNodes[7])
+            let msgErreur = first.parentNode.childNodes[7]
+            error(first, "Vous devez entrer votre prénom.", msgErreur)
         }
         if(last.value == "") {
-            error(last, "Vous devez entrer votre nom.", last.parentNode.childNodes[7])
+            let msgErreur = last.parentNode.childNodes[7]
+            error(last, "Vous devez entrer votre nom.", msgErreur)
         }
         if(email.value == "") {
-            error(email, "Vous devez entrer votre email.", email.parentNode.childNodes[7])
+            let msgErreur = email.parentNode.childNodes[7]
+            error(email, "Vous devez entrer votre email.", msgErreur)
         }
         if(birthdate.value == "") {
-            error(birthdate, "Vous devez entrer votre date de naissance.", birthdate.parentNode.childNodes[7])
+            let msgErreur = birthdate.parentNode.childNodes[7]
+            error(birthdate, "Vous devez entrer votre date de naissance.", msgErreur)
         }
         if(quantity.value == "") {
-            error(quantity, "Vous devez entrer entrée une donnée.",quantity.parentNode.childNodes[6] )
+            let msgErreur = quantity.parentNode.childNodes[6]
+            error(quantity, "Vous devez entrer entrée une donnée.", msgErreur)
         }
         if(isNaN(quantity.value) == true) {
-            error(quantity, "Vous devez saisir un nombre",quantity.parentNode.childNodes[6] )
+            let msgErreur = quantity.parentNode.childNodes[6]
+            error(quantity, "Vous devez saisir un nombre", msgErreur)
         }
         if(checkedCheckbox == false) {
-            error(optionsCity,"Vous devez choisir une option.", optionsCity.childNodes[25])
+            let msgErreur = optionsCity.childNodes[25]
+            error(optionsCity,"Vous devez choisir une option.", msgErreur)
         }
         if(checkbox1.checked == false) {
-            error(checkbox1,"Vous devez vérifier que vous acceptez les termes et conditions", checkbox1.parentNode.childNodes[5])
+            let msgErreur = checkbox1.parentNode.childNodes[5]
+            error(checkbox1,"Vous devez vérifier que vous acceptez les termes et conditions", msgErreur)
         }
     }
 }
