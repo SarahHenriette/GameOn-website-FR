@@ -11,7 +11,7 @@ const body = document.getElementById("body")
 const formulaire = document.querySelector(".modal-bground");
 const textControl = document.querySelectorAll(".text-control")
 
-let regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+let regexEmail =  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 let regexMin = /^.{2,35}$/
 let checkedCheckbox = false
 
@@ -107,7 +107,6 @@ function error(element, messageError, smallError) {
         }
     })
     
-console.log(birthdate.value )
 function validate(event) {
     //vérifie si l'une des checkbox est checké ou pas
     checkbox.forEach(element => {
@@ -115,7 +114,6 @@ function validate(event) {
             checkedCheckbox = true
         }
     })
-    console.log(birthdate.value.substr(0, 4) )
 
     //si toutes les conditions sont remplis je valide
     if( regexMin.test(first.value) &&
@@ -169,7 +167,6 @@ function validate(event) {
 
             //Je remet les checkbox a false
             checkedCheckbox = false
-
     } else {
         //si tout n'est pas rempli je mets les messages d'erreurs
         event.preventDefault()
@@ -189,7 +186,7 @@ function validate(event) {
             let msgErreur = birthdate.parentNode.childNodes[7]
             error(birthdate, "Vous devez entrer votre date de naissance.", msgErreur)
         } 
-        if(birthdate.value.substr(0, 4) > 1900) {
+        if(birthdate.value.substr(0, 4) < 1900) {
             let msgErreur = birthdate.parentNode.childNodes[7]
             error(birthdate, "Veuillez entrer une date de naissance valide.", msgErreur)
         }
