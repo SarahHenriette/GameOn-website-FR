@@ -10,4 +10,4 @@ Le but de ce projet a été de créer une landing page avec javascript
 - Javascript
 
 # Démo :
-https://elise-rousseau-3-14052021.vercel.app/
+https://game-on-website-fr-two.vercel.app/
